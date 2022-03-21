@@ -1,0 +1,56 @@
+import java.util.Scanner;
+public class Main
+{
+    static int Current_wallet_amount(int current_wallet_amount) {
+        System.out.println("You have " + current_wallet_amount + " kn in your wallet.");
+        return current_wallet_amount;
+    }
+    
+    static int Change_wallet_amount(int money_amount, int amount) {
+        int changed_wallet_amount = money_amount + amount;
+        return Current_wallet_amount(changed_wallet_amount);
+    }
+    static int Funds_after_bet(int money_amount, int bet) {
+        int changed_wallet_amount = money_amount - bet;
+        if(changed_wallet_amount >= 0) {
+            System.out.println("Your bet was succesfuly placed.");
+            return Current_wallet_amount(changed_wallet_amount);
+        }
+        else {
+            System.out.println("Your have insufficient funds. If you want to place a bet, please insert more money in your wallet.");
+            return Current_wallet_amount(money_amount);
+        }
+    }
+    
+	public static void main(String[] args) {
+	    int x = 1;
+	    int wallet = 0;
+	    do{
+	    Scanner scan = new Scanner(System.in);
+
+		System.out.println("Welcome to Hattrick! If you want to check your wallet fund press 1:");
+		System.out.println("If you want to inser/upload more money on your account press 2:");
+		System.out.println("If you want to place a bet press 3");
+		System.out.println("To exit press 4");
+		int number = scan.nextInt();
+		
+		if(number == 1) {
+    	   wallet = Current_wallet_amount(wallet);
+		}
+		
+		if( number == 2) {
+		    System.out.println("How much money do you want to insert?");
+		    int payin = scan.nextInt();
+		    wallet = Change_wallet_amount( wallet, payin);
+		}
+		if(number == 3) {
+		    System.out.println("Bet amunt:");
+		    int bet_amount = scan.nextInt();
+		    wallet = Funds_after_bet(wallet, bet_amount);
+		}
+		if(number == 4) {
+		    x = 0;
+		}
+	    } while(x == 1);
+	}
+}
